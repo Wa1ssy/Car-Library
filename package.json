@@ -1,0 +1,25 @@
+{
+  "name": "car-library",
+  "version": "1.0.0",
+  "description": "A full-stack JavaScript web app that allows users to manage car information via CRUD operations.  \r The project demonstrates the integration of front-end and back-end web applications communicating through RESTful APIs using JSON.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"cd backend && npm run dev\" \"cd frontend && npm run dev",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Wa1ssy/Car-Library.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Wa1ssy/Car-Library/issues"
+  },
+  "homepage": "https://github.com/Wa1ssy/Car-Library#readme",
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}
