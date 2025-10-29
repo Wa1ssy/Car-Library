@@ -2,7 +2,8 @@ import express from 'express';
 import http from 'http';
 import dotenv from 'dotenv';    
 import { sync } from './data/dbConfig.js';
-import { userService } from './data/dataServices.js';
+import { userService } from './data/userService.js';
+import { carService } from './data/CarService.js';
 dotenv.config();
 
 const app = express();
@@ -11,6 +12,11 @@ const httpServer = http.createServer(app);
 app.get('/', async (req, res) => {
     const user =  await userService.getUser("Mihkel");
     res.status(200).type("text/plain").send(`Hello, ${user.username}!`);
+});
+
+app.get('/api/v1/cars', async (req, res) => {
+    const cars = await carService.getCars();
+    return res.json(cars);
 });
 
 const PORT = process.env.PORT;
