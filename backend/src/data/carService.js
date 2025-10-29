@@ -1,8 +1,9 @@
 import Cars from "./CarModel.js";
-
 export const carService = {
     getCar: async (carId) => {
-        const car = await Cars.findByPk(carId);
+        const car = await Cars.findByPk(carId,{
+            attributes: { exclude: ['createdAt', 'updatedAt'] },
+        });
         return car ? car.get({plain: true}) : undefined;
     },
     getCars: async () => {

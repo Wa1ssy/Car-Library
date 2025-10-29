@@ -11,20 +11,32 @@ const Cars = sequelize.define(
             autoIncrement: true,
             primaryKey: true
         },
-        brand: {
+        name: {
             type: DataTypes.STRING,
             allowNull: false
         },
+        model: {
+            type: DataTypes.STRING,
+        },
+        releaseDate:{
+            type: DataTypes.DATE,
+        },
+        price: {
+            type: DataTypes.DECIMAL(10,2),
+        }
     }
 );
-console.log("SYNC", process.env.DB_SYNC === "true");
 if (process.env.DB_SYNC === "true") {
     await sequelize.sync();
-    console.log("SEED", process.env.DB_SEED === "true");
     if(process.env.DB_SEED === "true") {
         await Cars.findOrCreate({
-           where: { name: "BMW"},
-            defaults: { name: "BMW"},
+           where: {
+                name: "BMW"},
+                defaults: { name: "BMW",
+                module: "M5 e60",
+                releaseDate: new Date("2003-06-05T00:00:00.000Z"),
+                price: "15000"
+            },
         });
     }
 }
