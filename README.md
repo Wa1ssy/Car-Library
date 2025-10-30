@@ -11,6 +11,8 @@ Auto kogumiku rakendus, kuhu saab lisada oma auto statistikat<br>
 # Projekti käivitamine<br>
 Peale kloonimist minna kloonitud kausta ja käivitada käsk
 
+käsud pane cmd-sse
+
 npm i
 
 Mine kausta backend ja kopeeri .env.example -> .env
