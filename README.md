@@ -1,22 +1,21 @@
-# 🚗 Car Library
+#Car Libary<br>
+Hajusrakenduste projekt<br>
+Tegijad: Mihkel Ploompuu, Artur Petrovski<br>
+Auto kogumiku rakendus, kuhu saab lisada oma auto statistikat<br>
+Projektihaldus - Trello
 
-A full-stack JavaScript web app that allows users to manage car information via CRUD operations.  
-The project demonstrates the integration of front-end and back-end web applications communicating through RESTful APIs using JSON.
+Keskkona seadistamine<br>
+#Projekti käivitamine<br>
+Peale kloonimist minna kloonitud kausta ja käivitada käsk
 
----
+npm i
 
-## 📁 Project Structure
+Mine kausta backend ja kopeeri .env.example -> .env
 
-- **Backend:** Node.js + Express + MongoDB
-- **Frontend:** React + Vite
-- **Communication:** REST API via HTTP with JSON
+Täida .env fail sobivate andmetega
 
----
+Projekti käivitamiseks anda korraldus
 
-## ⚙️ Setup Instructions
-
-### 1️⃣ Backend Setup
-```bash
-cd backend
-npm install
 npm run dev
+
+Projekt töötab ja kuvab veebilehed, millelt saab lehte külastada. Lõpetamiseks vajuta klahve CTRL+C
