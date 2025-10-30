@@ -1,11 +1,14 @@
-#Car Libary<br>
-Hajusrakenduste projekt<br>
-Tegijad: Mihkel Ploompuu, Artur Petrovski<br>
-Auto kogumiku rakendus, kuhu saab lisada oma auto statistikat<br>
-Projektihaldus - Trello
+# Car Libary<br>
+Hajusrakenduste projekt<br> 
 
-Keskkona seadistamine<br>
-#Projekti käivitamine<br>
+Tegijad: Mihkel Ploompuu, Artur Petrovski<br>
+
+Auto kogumiku rakendus, kuhu saab lisada oma auto statistikat<br>
+
+[Projektihaldus - Trello](https://trello.com/b/nYKJpuSR/car-library)
+
+# Keskkona seadistamine<br>
+# Projekti käivitamine<br>
 Peale kloonimist minna kloonitud kausta ja käivitada käsk
 
 npm i
