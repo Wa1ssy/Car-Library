@@ -5,10 +5,14 @@ import { sync } from './data/dbConfig.js';
 import { userService } from './data/userService.js';
 import { carService } from './data/CarService.js';
 import Cars from "./data/CarModel.js";
+import  swaggerUi from 'swagger-ui-express';
+import swaggerDoc from './docs/swagger.json' with {type: "json"};
 dotenv.config();
 
 const app = express();
 const httpServer = http.createServer(app);
+
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDoc));
 
 app.get('/', async (req, res) => {
     const user =  await userService.getUser("Mihkel");
@@ -21,7 +25,7 @@ app.get('/api/v1/cars/:id', async (req, res) => {
     }
     const car = await carService.getCar(req.params.id);
     if(!car){
-        return res.status(404).send({error: "Game not found"});
+        return res.status(404).send({error: "Car not found"});
     }
     return res.json(car);
 })

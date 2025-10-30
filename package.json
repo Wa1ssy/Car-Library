@@ -28,5 +28,8 @@
   "devDependencies": {
     "concurrently": "^9.2.1",
     "subpackage": "^1.1.0"
+  },
+  "overrides": {
+    "cross-spawn": "^6.0.6"
   }
 }

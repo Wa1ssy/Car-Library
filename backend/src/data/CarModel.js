@@ -33,9 +33,9 @@ if (process.env.DB_SYNC === "true") {
            where: {
                 name: "BMW"},
                 defaults: { name: "BMW",
-                module: "M5 e60",
-                releaseDate: new Date("2003-06-05T00:00:00.000Z"),
-                price: "15000"
+                model: "e46",
+                releaseDate: new Date("1998-04-28T00:00:00.000Z"),
+                price: "4500"
             },
         });
     }

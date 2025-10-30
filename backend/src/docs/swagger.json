@@ -1,0 +1,276 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Cars API",
+        "version": "1.0",
+        "description": "### This is a Swagger UI for our Cars API  \n\n### Error handling\nErrors are presented using the HTTP status codes 400-599. The response include a more detailed explanation about the error in the body.\n\n```\n{\n  \"error\": \"Cleartext explanation of the error that occurred\"\n}\n```\n\n### Generic API errors\nThese error responses can be returned by any of the described endpoints.\n\n| HTTP status  |  Description |\n|---|---|\n| 400| Bad input parameters or invalid request. More information can be found in the response body.\n| 401| The consumer does not have access to the requested resource or the provided token is not valid.\n| 404| The requested resource can not be found or the user does not have access to the resource.\n| 5XX| A server error has occurred while processing the request."
+    },
+    "basePath": "/api/v1",
+    "paths": {
+        "/cars": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Cars"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of Cars",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/CarsListItem"
+                            }
+                        },
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "id": 70,
+                                    "name": "some text"
+                                },
+                                {
+                                    "id": 28,
+                                    "name": "some text"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "summary": "Get all cars"
+            },
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Cars"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "description": "Car to be created - without ID",
+                        "schema": {
+                            "$ref": "#/definitions/NewCar"
+                        },
+                        "in": "body",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Create car",
+                        "schema": {
+                            "$ref": "#/definitions/Car"
+                        },
+                        "examples": {
+                            "application/json": {
+                                "id": 23,
+                                "name": "some text",
+                                "model": "some text",
+                                "releaseDate": "2018-02-10T09:30Z",
+                                "price": 22
+                            }
+                        }
+                    }
+                },
+                "summary": "Create Car"
+            }
+        },
+        "/cars/{id}": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Cars"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Return requested Car details",
+                        "schema": {
+                            "$ref": "#/definitions/Car"
+                        },
+                        "examples": {
+                            "application/json": {
+                                "id": 16,
+                                "name": "some text",
+                                "model": "some text",
+                                "releaseDate": "2018-02-10T09:30Z",
+                                "price": 71
+                            }
+                        }
+                    }
+                },
+                "summary": "Get the car with given id"
+            },
+            "put": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Cars"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "description": "Car with data to be updated",
+                        "schema": {
+                            "$ref": "#/definitions/Car"
+                        },
+                        "in": "body",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Car updated",
+                        "schema": {
+                            "$ref": "#/definitions/Car"
+                        }
+                    }
+                },
+                "summary": "Upadet Car with given value"
+            },
+            "delete": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Cars"
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Car deleted\n"
+                    },
+                    "404": {
+                        "description": "Car not found",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        },
+                        "examples": {
+                            "application/json": {
+                                "erroe": "Car not found"
+                            }
+                        }
+                    }
+                }
+            },
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "type": "number"
+                }
+            ]
+        }
+    },
+    "definitions": {
+        "CarsListItem": {
+            "title": "Root Type for CarsListItem",
+            "description": "",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                }
+            },
+            "example": {
+                "id": 1,
+                "name": "BMW"
+            }
+        },
+        "Car": {
+            "title": "Root Type for Car",
+            "description": "",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "model": {
+                    "type": "string"
+                },
+                "releaseDate": {
+                    "format": "date-time",
+                    "type": "string"
+                },
+                "price": {
+                    "format": "int32",
+                    "type": "integer"
+                }
+            },
+            "example": {
+                "id": 1,
+                "name": "BMW",
+                "model": "e46",
+                "releaseDate": "1998-04-28T00:00:00.000Z",
+                "price": 4500
+            }
+        },
+        "Error": {
+            "title": "Root Type for Error",
+            "description": "",
+            "type": "object",
+            "properties": {
+                "erroe": {
+                    "type": "string"
+                }
+            },
+            "example": {
+                "erroe": "Error message"
+            }
+        },
+        "NewCar": {
+            "title": "Root Type for Car",
+            "description": "",
+            "required": [
+                "name"
+            ],
+            "type": "object",
+            "properties": {
+                "name": {
+                    "description": "Required, Unique",
+                    "type": "string"
+                },
+                "model": {
+                    "description": "Optional\n",
+                    "type": "string"
+                },
+                "releaseDate": {
+                    "format": "date-time",
+                    "description": "Optional",
+                    "type": "string"
+                },
+                "price": {
+                    "format": "int32",
+                    "description": "Optional\n",
+                    "type": "integer"
+                }
+            },
+            "example": {
+                "id": 1,
+                "name": "BMW",
+                "model": "e46",
+                "releaseDate": "1998-04-28T00:00:00.000Z",
+                "price": 4500
+            }
+        }
+    }
+}
