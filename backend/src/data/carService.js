@@ -15,10 +15,10 @@ export const carService = {
         return cars.map(c => c.get({ plain: true }));
     },
     
-    createCar: async (name, manufacturer, releaseDate, price) => {
+    createCar: async (name, model, releaseDate, price) => {
         const createdCar = await Cars.create({
             name,
-            manufacturer,
+            model,
             releaseDate,
             price
         });
@@ -32,5 +32,6 @@ export const carService = {
             },
         });
         return deleteResult !== 0;
-    }
+    },
+
 };
