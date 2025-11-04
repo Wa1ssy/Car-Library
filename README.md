@@ -13,7 +13,7 @@ Peale kloonimist minna kloonitud kausta ja käivitada käsk
 
 käsud pane cmd-sse
 
-npm i
+`npm i`
 
 Mine kausta backend ja kopeeri .env.example -> .env
 
@@ -21,6 +21,6 @@ Täida .env fail sobivate andmetega
 
 Projekti käivitamiseks anda korraldus
 
-npm run dev
+`npm run dev`
 
 Projekt töötab ja kuvab veebilehed, millelt saab lehte külastada. Lõpetamiseks vajuta klahve CTRL+C
