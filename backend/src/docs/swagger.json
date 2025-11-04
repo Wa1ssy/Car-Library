@@ -28,11 +28,11 @@
                             "application/json": [
                                 {
                                     "id": 70,
-                                    "name": "some text"
+                                    "name": "Car 1"
                                 },
                                 {
                                     "id": 28,
-                                    "name": "some text"
+                                    "name": "Car 2"
                                 }
                             ]
                         }
@@ -70,10 +70,10 @@
                         "examples": {
                             "application/json": {
                                 "id": 23,
-                                "name": "some text",
-                                "model": "some text",
-                                "releaseDate": "2018-02-10T09:30Z",
-                                "price": 22
+                                "name": "Volkswagen",
+                                "model": "Golf",
+                                "releaseDate": "1998-02-10T09:30Z",
+                                "price": 2200
                             }
                         }
                     }
@@ -98,10 +98,10 @@
                         "examples": {
                             "application/json": {
                                 "id": 16,
-                                "name": "some text",
-                                "model": "some text",
-                                "releaseDate": "2018-02-10T09:30Z",
-                                "price": 71
+                                "name": "Volvo",
+                                "model": "240",
+                                "releaseDate": "1989-02-10T09:30Z",
+                                "price": 7100
                             }
                         }
                     }
@@ -157,7 +157,7 @@
                         },
                         "examples": {
                             "application/json": {
-                                "erroe": "Car not found"
+                                "error": "Car not found"
                             }
                         }
                     }
