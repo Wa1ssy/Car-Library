@@ -16,15 +16,24 @@ const sequelize = isTest
       storage: ":memory",
       logging: false,
       define: {
-        attributes: {
-            exclude: [ 'createdAt', 'updatedAt']
+            defaultScope: {
+                attributes: {
+                    exclude: ['createdAt', 'updatedAt']
+                }
+            }
         }
-      }
     })
   : new Sequelize({
       dialect: "sqlite",
       storage: process.env.DB_FILE,
       logging: console.log,
+        define: {
+            defaultScope: {
+                attributes: {
+                    exclude: ['createdAt', 'updatedAt']
+                }
+            }
+        }
     });
 
 (async () => {

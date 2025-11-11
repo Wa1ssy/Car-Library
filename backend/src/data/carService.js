@@ -7,7 +7,6 @@ export const carService = {
       where: {
         id: carId,
       },
-      attributes: { exclude: ['createdAt', 'updatedAt'] },
       include: {
         model: Users,
         as: "Drivers",

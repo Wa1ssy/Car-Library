@@ -12,8 +12,8 @@ export default (sequelize, DataTypes) => {
             }
         }, {
         defaultScope: {
-            attributes: { exclude: ('password') }
-        }
+                attributes: { exclude: ['password'] }
+            }
     }
     );
 }
