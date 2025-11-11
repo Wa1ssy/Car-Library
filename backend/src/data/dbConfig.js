@@ -1,7 +1,7 @@
 import { DataTypes, Sequelize } from 'sequelize';
-import GameModel from "./CarModel.js";
+import CarModel from "./CarModel.js";
 import UserModel from "./UserModel.js";
-import GamePlayModel from "./CarPlayModel.js";
+import CarPlayModel from "./CarPlayModel.js";
 import relations from "./relations.js";
 import seed from "./seed.js";
 import dotenv from "dotenv";
@@ -15,6 +15,11 @@ const sequelize = isTest
       dialect: "sqlite",
       storage: ":memory",
       logging: false,
+      define: {
+        attributes: {
+            exclude: [ 'createdAt', 'updatedAt']
+        }
+      }
     })
   : new Sequelize({
       dialect: "sqlite",
@@ -32,9 +37,9 @@ const sequelize = isTest
 })();
 
 const db = {};
-db.Games = GameModel(sequelize, DataTypes);
+db.Cars = CarModel(sequelize, DataTypes);
 db.Users = UserModel(sequelize, DataTypes);
-db.GamePlays = GamePlayModel(sequelize, DataTypes);
+db.CarPlays = CarPlayModel(sequelize, DataTypes);
 
 relations(db);
 
