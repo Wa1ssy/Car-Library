@@ -19,7 +19,7 @@ const sequelize = isTest
   : new Sequelize({
       dialect: "sqlite",
       storage: process.env.DB_FILE,
-      logging: false,
+      logging: console.log,
     });
 
 (async () => {

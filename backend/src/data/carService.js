@@ -1,32 +1,40 @@
 import { db } from "./dbConfig.js";
+const { Cars, Users } = db;
 
 export const carService = {
   getCar: async (carId) => {
-    const car = await db.Cars.findByPk(carId, {
+    const car = await Cars.findOne({
+      where: {
+        id: carId,
+      },
       attributes: { exclude: ['createdAt', 'updatedAt'] },
+      include: {
+        model: Users,
+        as: "Drivers",
+      },
     });
     return car ? car.get({ plain: true }) : undefined;
   },
 
   getCars: async () => {
-    const cars = await db.Cars.findAll({
+    const cars = await Cars.findAll({
       attributes: ['id', 'name'],
     });
     return cars.map(c => c.get({ plain: true }));
   },
 
   createCar: async (name, model, releaseDate, price) => {
-    const createdCar = await db.Cars.create({
+    const createdCar = await Cars.create({
       name,
       model,
       releaseDate,
-      price
+      price,
     });
     return createdCar.get({ plain: true });
   },
 
   async deleteCar(carId) {
-    const deleteResult = await db.Cars.destroy({
+    const deleteResult = await Cars.destroy({
       where: {
         id: carId,
       },
