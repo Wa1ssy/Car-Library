@@ -1,8 +1,5 @@
-import { DataTypes } from "sequelize";
-import { sequelize } from './dbConfig.js';
-
-
-    const Users = sequelize.define(
+export default (sequelize, DataTypes) => {
+    return sequelize.define(
         "User",
         {
             username: {
@@ -13,6 +10,10 @@ import { sequelize } from './dbConfig.js';
                 type: DataTypes.STRING,
                 allowNull: false
             }
+        }, {
+        defaultScope: {
+            attributes: { exclude: ('password') }
         }
+    }
     );
-export default Users;
+}

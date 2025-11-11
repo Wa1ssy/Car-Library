@@ -1,7 +1,7 @@
 import { DataTypes, Sequelize } from 'sequelize';
-import GameModel from "./GameModel.js";
+import GameModel from "./CarModel.js";
 import UserModel from "./UserModel.js";
-import GamePlayModel from "./GamePlayModel.js";
+import GamePlayModel from "./CarPlayModel.js";
 import relations from "./relations.js";
 import seed from "./seed.js";
 import dotenv from "dotenv";
