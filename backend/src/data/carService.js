@@ -32,6 +32,14 @@ export const carService = {
     return createdCar.get({ plain: true });
   },
 
+   updateCar: async (carId, car) => {
+        const [updatedCount, _ ] = await Cars.update(car, {where: {id: carId}});
+        if (updatedCount > 0) {
+            return await Cars.findByPk(carId);
+        }
+        return null;
+    },
+
   async deleteCar(carId) {
     const deleteResult = await Cars.destroy({
       where: {
