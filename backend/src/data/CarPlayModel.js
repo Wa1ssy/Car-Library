@@ -10,7 +10,7 @@ export default (sequelize, DataTypes) => {
       driveTimeMinutes: {
         type: DataTypes.INTEGER,
         allowNull: false,
-      },
+      }
     }
   );
 };
