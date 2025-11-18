@@ -49,19 +49,24 @@ const db = {};
 db.Cars = CarModel(sequelize, DataTypes);
 db.Users = UserModel(sequelize, DataTypes);
 db.CarPlays = CarPlayModel(sequelize, DataTypes);
-
 relations(db);
 
 const sync = async () => {
-  await sequelize.sync({ alter: true });
+  await sequelize.sync({ force: true });
   console.log("All models were synchronized.");
 };
 
 if (process.env.DB_SYNC === "true") {
-  await sync();
-  if (process.env.DB_SEED === "true") {
-    await seed(db);
-  }
+    await sync();
+}
+
+if (process.env.DB_SEED === "true") {
+    try {
+        await seed(db);
+        console.log("Seeding succeeded!");
+    } catch (e) {
+        console.error("Seeding failed: ", e.message);
+    }
 }
 
 export { sequelize, sync, db };

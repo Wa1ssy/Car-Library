@@ -11,9 +11,9 @@ export default async (db) => {
   console.log("Car created:", carCreated);
 
   const [driver, userCreated] = await db.Users.findOrCreate({
-    where: { username: "opilane" },
+    where: { username: "driver" },
     defaults: {
-      username: "opilane",
+      username: "driver",
       password: "$2a$10$OjEII2iqxMpjdd8kSEZty.ZNVVqLjm1YtHDWBpqxyMstdV09XlfSy",
     },
   });

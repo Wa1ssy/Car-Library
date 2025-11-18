@@ -34,11 +34,11 @@ const updateById = async (req, res) => {
     if (!req.params.id) {
         return res.status(400).send({ error: "URL does not contain ID" });
     }
-    const updateCar = await carService.updateCar(req.params.id, req.body);
-    if (!updateCar) {
+    const updatedCar = await carService.updateCar(req.params.id, req.body);
+    if (!updatedCar) {
         return res.status(404).send({ error: "Game not found" });
     }
-    return res.json(updateCar);
+    return res.json(updatedCar);
 }
 
 const deleteCar = async (req, res) => {
