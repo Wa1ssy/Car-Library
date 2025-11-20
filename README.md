@@ -24,3 +24,9 @@ Projekti käivitamiseks anda korraldus
 `npm run dev`
 
 Projekt töötab ja kuvab veebilehed, millelt saab lehte külastada. Lõpetamiseks vajuta klahve CTRL+C
+
+# Backend
+
+Kui soovid uuendada swgger dokumenti, siis jooksuta käsku
+
+`npm run backend-swagger`
