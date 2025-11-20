@@ -1,10 +1,10 @@
 import express from 'express';
 import http from 'http';
 import dotenv from 'dotenv';
-import carRoutes from './routes/carRoutes.js'
+import gameRoutes from './routes/carRoutes.js'
 import swaggerUi from 'swagger-ui-express';
-import swaggerDoc from './docs/swagger.json' with { type: 'json' };
-import userRoutes from './routes/userRoutes.js';
+import swaggerDoc from './docs/swagger.json' with { type: "json" };
+import userRoutes from "./routes/userRoutes.js";
 
 dotenv.config();
 
@@ -14,16 +14,16 @@ const httpServer = http.createServer(app);
 
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDoc));
 
-app.get('/', async (_req, res) => {
-  res.status(200).type('text/html').send(`<a href="/docs">swagger</a>`);
+app.get('/', async (req, res) => {
+    res.status(200).type('text/html').send(`<a href="/docs">swagger</a>`);
 });
-carRoutes(app);
+gameRoutes(app);
 userRoutes(app);
 
 const PORT = process.env.PORT;
 
 httpServer.listen(PORT, async () => {
-  console.log(`Server is running at ${process.env.SERVER_URL}:${PORT}/`);
+    console.log(`Server is running at http://${process.env.HOST}:${PORT}/`);
 });
 
 export { httpServer, app };
