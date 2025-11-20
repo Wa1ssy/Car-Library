@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
 import ModelRow from "./tableParts/modelRow.jsx";
 import CarRow from "./tableParts/carRow.jsx";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function CarsTable() {
   const [rows, setRows] = useState([]);
@@ -33,9 +33,7 @@ export default function CarsTable() {
 
     const fetchCars = async () => {
       try {
-        const response = await axios.get(
-          import.meta.env.VITE_BACKEND_URL + "/api/v1/cars"
-        );
+        const response = await axios.get(import.meta.env.VITE_BACKEND_URL + "/api/v1/cars");
         cars = response.data;
         categorizeCars();
       } catch (error) {
