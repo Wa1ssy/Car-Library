@@ -17,7 +17,7 @@ export const carService = {
 
   getCars: async () => {
     const cars = await Cars.findAll({
-      attributes: ['id', 'name'],
+      attributes: ['id', 'name', 'model', 'prcie'],
     });
     return cars.map(c => c.get({ plain: true }));
   },

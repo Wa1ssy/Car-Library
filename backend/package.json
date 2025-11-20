@@ -10,11 +10,13 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
+  "axios": "^1.13.2",
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
     "bcryptjs": "^3.0.3",
+    "cors": "^2.8.5",
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
     "sequelize": "^6.37.7",

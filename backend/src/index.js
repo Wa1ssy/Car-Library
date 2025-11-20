@@ -1,6 +1,7 @@
 import express from 'express';
 import http from 'http';
 import dotenv from 'dotenv';
+import cors from 'cors';
 import gameRoutes from './routes/carRoutes.js'
 import swaggerUi from 'swagger-ui-express';
 import swaggerDoc from './docs/swagger.json' with { type: "json" };
@@ -10,6 +11,7 @@ dotenv.config();
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 const httpServer = http.createServer(app);
 
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDoc));

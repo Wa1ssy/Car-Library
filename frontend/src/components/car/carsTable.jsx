@@ -10,7 +10,7 @@ export default function CarsTable({ cars }) {
             rows.push(
                 <ModelRow
                     model={car.model}
-                    key={car.model} />
+                    key={car.model ?? 'unknown'} />
             );
         }
         rows.push(
