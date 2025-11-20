@@ -2,12 +2,34 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import FilterableCarsTable from "./components/car/filterableCarsTable.jsx"
 
 function App() {
   const [count, setCount] = useState(0)
+    const cars = [
+      {
+        "id":1,
+        "name": "BMW",
+        "model": "E46",
+        "price": "2500"
+      },
+      {
+        "id":2,
+        "name": "BMW",
+        "model": "E39",
+        "price": "1500"
+      },
+      {
+        "id":3,
+        "name": "BMW",
+        "model": "M5",
+        "price": "25000"
+      }
+    ]
 
   return (
     <>
+    <FilterableCarsTable cars={cars}/>
       <div>
         <a href="https://vite.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
