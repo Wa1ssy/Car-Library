@@ -4,7 +4,7 @@ export default (app) => {
     app.route('/api/v1/users')
         .get(UsersController.getAll)
         .post(UsersController.create);
-    app.route('/api/v1/users/:userName')
+    app.route('/api/v1/users/:username')
         .get(UsersController.getById)
         .put(UsersController.updateById)
         .delete(UsersController.deleteById);

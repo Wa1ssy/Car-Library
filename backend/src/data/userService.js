@@ -15,8 +15,9 @@ export const userService = {
     },
     getUsers: async () => {
         const users = await Users.findAll({
-            attributes: ['userName'],
+            attributes: ['username'],
         });
+        console.log("FOUND USERS:", users);
         return users.map(g => g.get({plain: true}));
     },
     updateUser: async (username, user) => {
