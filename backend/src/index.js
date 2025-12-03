@@ -22,10 +22,11 @@ app.get('/', async (req, res) => {
 gameRoutes(app);
 userRoutes(app);
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 8000;
+const HOST = process.env.HOST || 'localhost';
 
 httpServer.listen(PORT, async () => {
-    console.log(`Server is running at http://${process.env.HOST}:${PORT}/`);
+    console.log(`Server is running at http://${HOST}:${PORT}/`);
 });
 
 export { httpServer, app };
