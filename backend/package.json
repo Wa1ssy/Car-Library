@@ -27,6 +27,11 @@
   "devDependencies": {
     "cross-env": "^10.1.0",
     "nodemon": "^3.1.10",
-    "swagger-autogen": "^2.23.7"
+    "swagger-autogen": "^2.23.7",
+    "subpackage": "^1.1.0"
   }
+  "subPackages": [
+    "backend",
+    "frontend"
+  ],
 }
