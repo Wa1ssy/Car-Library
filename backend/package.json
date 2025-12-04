@@ -7,7 +7,8 @@
     "dev": "nodemon .",
     "swagger": "node src/swagger/swagger.js",
     "start": "node src/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "subpkg run build"
   },
   "keywords": [],
   "axios": "^1.13.2",
