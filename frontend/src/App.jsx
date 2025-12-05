@@ -3,6 +3,7 @@ import './App.css'
 import FilterableCarsTable from "./components/car/filterableCarsTable.jsx";
 import Login from "./components/auth/Login.jsx";
 import Register from "./components/auth/Register.jsx";
+import Profile from "./components/auth/Profile.jsx";
 import { BrowserRouter, Routes, Route, Link, Navigate } from 'react-router-dom';
 
 class ErrorBoundary extends Component {
@@ -64,8 +65,7 @@ function App() {
                         {token ? (
                             <>
                                 <Link to="/">Home</Link>
-                                <span>Welcome, {username}</span>
-                                <button className="btn" onClick={logout} style={{ padding: '8px 20px', fontSize: '0.9rem' }}>Logout</button>
+                                <Link to="/profile" style={{ fontSize: '1.5rem', textDecoration: 'none', marginLeft: 'auto' }}>👤</Link>
                             </>
                         ) : (
                             <>
@@ -79,6 +79,7 @@ function App() {
                         <Route path="/" element={token ? <FilterableCarsTable token={token} username={username} /> : <Navigate to="/login" />} />
                         <Route path="/login" element={<Login setToken={saveToken} />} />
                         <Route path="/register" element={<Register />} />
+                        <Route path="/profile" element={token ? <Profile token={token} username={username} onLogout={logout} /> : <Navigate to="/login" />} />
                     </Routes>
                 </div>
             </BrowserRouter>

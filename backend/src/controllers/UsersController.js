@@ -36,6 +36,9 @@ const updateById = async (req, res) => {
     if (!req.params.userName) {
         return res.status(400).send({ error: "URL does not contain userName" });
     }
+    if (req.body.password) {
+        req.body.password = await bcrypt.hash(req.body.password, 10);
+    }
     const updatedUser = await userService.updateUser(req.params.userName, req.body);
     if (!updatedUser) {
         return res.status(404).send({ error: "User not found" });

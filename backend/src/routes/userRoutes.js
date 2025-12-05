@@ -1,4 +1,5 @@
 import UsersController from "../controllers/UsersController.js";
+import auth from "../middleware/authMiddleware.js";
 
 export default (app) => {
     app.route('/api/v1/users')
@@ -8,7 +9,7 @@ export default (app) => {
     app.route('/api/v1/users/login')
         .post(UsersController.login);
     app.route('/api/v1/users/:username')
-        .get(UsersController.getById)
-        .put(UsersController.updateById)
-        .delete(UsersController.deleteById);
+        .get(auth, UsersController.getById)
+        .put(auth, UsersController.updateById)
+        .delete(auth, UsersController.deleteById);
 }
