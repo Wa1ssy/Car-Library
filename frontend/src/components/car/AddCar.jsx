@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-export default function AddCar({ onCarAdded, initialCar }) {
+export default function AddCar({ onCarAdded, initialCar, token }) {
     const [name, setName] = useState('');
     const [model, setModel] = useState('');
     const [price, setPrice] = useState('');
@@ -41,10 +41,14 @@ export default function AddCar({ onCarAdded, initialCar }) {
                 releaseDate
             };
 
+            const config = {
+                headers: { Authorization: `Bearer ${token}` }
+            };
+
             if (initialCar) {
-                await axios.put(`${url}/${initialCar.id}`, carData);
+                await axios.put(`${url}/${initialCar.id}`, carData, config);
             } else {
-                await axios.post(url, carData);
+                await axios.post(url, carData, config);
             }
 
 
@@ -65,57 +69,63 @@ export default function AddCar({ onCarAdded, initialCar }) {
     };
 
     return (
-        <div className="add-car-form" style={{ marginBottom: '20px', padding: '10px', border: '1px solid #ccc' }}>
-            <h3>{initialCar ? 'Edit Car' : 'Add New Car'}</h3>
-            {error && <p style={{ color: 'red' }}>{error}</p>}
+        <div className="form-card">
+            <h3 style={{ color: '#5a3f9e', marginBottom: '1.5rem', textAlign: 'center' }}>
+                {initialCar ? 'Edit Car' : 'Add New Car'}
+            </h3>
+            {error && <p style={{ color: '#ff4757', textAlign: 'center', marginBottom: '1rem' }}>{error}</p>}
             <form onSubmit={handleSubmit}>
-                <div style={{ marginBottom: '10px' }}>
-                    <label>
-                        Name:
-                        <input
-                            type="text"
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
-                            required
-                            style={{ marginLeft: '10px' }}
-                        />
-                    </label>
+                <div className="form-group">
+                    <label>Name</label>
+                    <input
+                        type="text"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        required
+                        placeholder="e.g. Tesla Model S"
+                    />
                 </div>
-                <div style={{ marginBottom: '10px' }}>
-                    <label>
-                        Model:
-                        <input
-                            type="text"
-                            value={model}
-                            onChange={(e) => setModel(e.target.value)}
-                            style={{ marginLeft: '10px' }}
-                        />
-                    </label>
+                <div className="form-group">
+                    <label>Model</label>
+                    <input
+                        type="text"
+                        value={model}
+                        onChange={(e) => setModel(e.target.value)}
+                        placeholder="e.g. Plaid"
+                    />
                 </div>
-                <div style={{ marginBottom: '10px' }}>
-                    <label>
-                        Price:
-                        <input
-                            type="number"
-                            value={price}
-                            onChange={(e) => setPrice(e.target.value)}
-                            style={{ marginLeft: '10px' }}
-                        />
-                    </label>
+                <div className="form-group">
+                    <label>Price ($)</label>
+                    <input
+                        type="number"
+                        value={price}
+                        onChange={(e) => setPrice(e.target.value)}
+                        placeholder="e.g. 99000"
+                    />
                 </div>
-                <div style={{ marginBottom: '10px' }}>
-                    <label>
-                        Release Date:
-                        <input
-                            type="date"
-                            value={releaseDate}
-                            onChange={(e) => setReleaseDate(e.target.value)}
-                            style={{ marginLeft: '10px' }}
-                        />
-                    </label>
+                <div className="form-group">
+                    <label>Release Date</label>
+                    <input
+                        type="date"
+                        value={releaseDate}
+                        onChange={(e) => setReleaseDate(e.target.value)}
+                    />
                 </div>
-                <button type="submit">{initialCar ? 'Update Car' : 'Add Car'}</button>
-                {initialCar && <button type="button" onClick={() => onCarAdded()} style={{ marginLeft: '10px' }}>Cancel</button>}
+                <div style={{ display: 'flex', gap: '10px', marginTop: '1.5rem' }}>
+                    <button type="submit" className="btn" style={{ flex: 1 }}>
+                        {initialCar ? 'Update Car' : 'Add Car'}
+                    </button>
+                    {initialCar && (
+                        <button
+                            type="button"
+                            className="btn"
+                            onClick={() => onCarAdded()}
+                            style={{ flex: 1, background: '#ccc', color: '#333' }}
+                        >
+                            Cancel
+                        </button>
+                    )}
+                </div>
             </form>
         </div>
     );

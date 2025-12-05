@@ -1,8 +1,9 @@
-import { useState, Component } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useState, Component, useEffect } from 'react'
 import './App.css'
 import FilterableCarsTable from "./components/car/filterableCarsTable.jsx";
+import Login from "./components/auth/Login.jsx";
+import Register from "./components/auth/Register.jsx";
+import { BrowserRouter, Routes, Route, Link, Navigate } from 'react-router-dom';
 
 class ErrorBoundary extends Component {
     constructor(props) {
@@ -38,10 +39,49 @@ class ErrorBoundary extends Component {
 }
 
 function App() {
+    const [token, setToken] = useState(localStorage.getItem('token'));
+    const [username, setUsername] = useState(localStorage.getItem('username'));
+
+    const saveToken = (userToken, userName) => {
+        localStorage.setItem('token', userToken);
+        localStorage.setItem('username', userName);
+        setToken(userToken);
+        setUsername(userName);
+    };
+
+    const logout = () => {
+        localStorage.removeItem('token');
+        localStorage.removeItem('username');
+        setToken(null);
+        setUsername(null);
+    };
+
     return (
         <ErrorBoundary>
-            <h1>Car library</h1>
-            <FilterableCarsTable />
+            <BrowserRouter>
+                <div className="app-container">
+                    <nav>
+                        {token ? (
+                            <>
+                                <Link to="/">Home</Link>
+                                <span>Welcome, {username}</span>
+                                <button className="btn" onClick={logout} style={{ padding: '8px 20px', fontSize: '0.9rem' }}>Logout</button>
+                            </>
+                        ) : (
+                            <>
+                                <Link to="/login">Login</Link>
+                                <Link to="/register">Register</Link>
+                            </>
+                        )}
+                    </nav>
+                    <h1>Car library</h1>
+                    <Routes>
+                        <Route path="/" element={token ? <FilterableCarsTable token={token} username={username} /> : <Navigate to="/login" />} />
+                        <Route path="/login" element={<Login setToken={saveToken} />} />
+                        <Route path="/register" element={<Register />} />
+                    </Routes>
+                </div>
+            </BrowserRouter>
         </ErrorBoundary>
     )
 }

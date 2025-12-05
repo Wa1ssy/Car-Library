@@ -4,7 +4,7 @@ import SearchBar from "../common/searchBar.jsx";
 import CarsTable from "./carsTable.jsx";
 import AddCar from "./AddCar.jsx";
 
-export default function FilterableCarsTable() {
+export default function FilterableCarsTable({ token, username }) {
     const [cars, setCars] = useState([]);
     const [filterText, setFilterText] = useState('');
     const [inStockOnly, setInStockOnly] = useState(false);
@@ -33,7 +33,9 @@ export default function FilterableCarsTable() {
     const handleDelete = async (id) => {
         if (window.confirm("Are you sure you want to delete this car?")) {
             try {
-                await axios.delete((import.meta.env.VITE_BACKEND_URL || "http://localhost:8000") + `/api/v1/cars/${id}`);
+                await axios.delete((import.meta.env.VITE_BACKEND_URL || "http://localhost:8000") + `/api/v1/cars/${id}`, {
+                    headers: { Authorization: `Bearer ${token}` }
+                });
                 fetchCars();
             } catch (error) {
                 console.error("Failed to delete car:", error);
@@ -58,17 +60,20 @@ export default function FilterableCarsTable() {
 
     return (
         <div>
-            <button
-                onClick={() => {
-                    setShowAddCar(!showAddCar);
-                    setEditingCar(null);
-                }}
-                style={{ marginBottom: '20px' }}
-            >
-                {showAddCar ? 'Cancel' : 'Add New Car'}
-            </button>
+            {token && (
+                <button
+                    className="btn"
+                    onClick={() => {
+                        setShowAddCar(!showAddCar);
+                        setEditingCar(null);
+                    }}
+                    style={{ marginBottom: '20px' }}
+                >
+                    {showAddCar ? 'Cancel' : 'Add New Car'}
+                </button>
+            )}
 
-            {showAddCar && <AddCar onCarAdded={handleCarAdded} initialCar={editingCar} />}
+            {showAddCar && <AddCar onCarAdded={handleCarAdded} initialCar={editingCar} token={token} />}
 
             <SearchBar
                 filterText={filterText}
@@ -80,6 +85,7 @@ export default function FilterableCarsTable() {
                 cars={filteredCars}
                 onEdit={handleEdit}
                 onDelete={handleDelete}
+                username={username}
             />
         </div>
     );

@@ -28,7 +28,7 @@ const createCar = async (req, res) => {
   if (req.body.price && isNaN(price)) {
     return res.status(400).send({ error: "Malformed number string in field: price" });
   }
-  const car = await carService.createCar(req.body.name, req.body.model, releaseDate, price);
+  const car = await carService.createCar(req.body.name, req.body.model, releaseDate, price, req.user.username);
   return res.json(car);
 };
 
@@ -36,6 +36,14 @@ const updateById = async (req, res) => {
   if (!req.params.id) {
     return res.status(400).send({ error: "URL does not contain ID" });
   }
+  const existingCar = await carService.getCar(req.params.id);
+  if (!existingCar) {
+    return res.status(404).send({ error: "Car not found" });
+  }
+  if (existingCar.userId !== req.user.username) {
+    return res.status(403).send({ error: "You are not the owner of this car" });
+  }
+
   const updatedCar = await carService.updateCar(req.params.id, req.body);
   if (!updatedCar) {
     return res.status(404).send({ error: "Car not found" });
@@ -47,6 +55,14 @@ const deleteCar = async (req, res) => {
   if (!req.params.id) {
     return res.status(400).send({ error: "URL does not contain ID" });
   }
+  const existingCar = await carService.getCar(req.params.id);
+  if (!existingCar) {
+    return res.status(404).send({ error: "Car not found" });
+  }
+  if (existingCar.userId !== req.user.username) {
+    return res.status(403).send({ error: "You are not the owner of this car" });
+  }
+
   const deleted = await carService.deleteCar(req.params.id);
   if (!deleted) {
     return res.status(404).send({ error: "Car not found" });

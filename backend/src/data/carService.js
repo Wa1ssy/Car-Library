@@ -17,28 +17,29 @@ export const carService = {
 
   getCars: async () => {
     const cars = await Cars.findAll({
-      attributes: ['id', 'name', 'model', 'price'],
+      attributes: ['id', 'name', 'model', 'price', 'userId'],
     });
     return cars.map(c => c.get({ plain: true }));
   },
 
-  createCar: async (name, model, releaseDate, price) => {
+  createCar: async (name, model, releaseDate, price, userId) => {
     const createdCar = await Cars.create({
       name,
       model,
       releaseDate,
       price,
+      userId,
     });
     return createdCar.get({ plain: true });
   },
 
-   updateCar: async (carId, car) => {
-        const [updatedCount, _ ] = await Cars.update(car, {where: {id: carId}});
-        if (updatedCount > 0) {
-            return await Cars.findByPk(carId);
-        }
-        return null;
-    },
+  updateCar: async (carId, car) => {
+    const [updatedCount, _] = await Cars.update(car, { where: { id: carId } });
+    if (updatedCount > 0) {
+      return await Cars.findByPk(carId);
+    }
+    return null;
+  },
 
   async deleteCar(carId) {
     const deleteResult = await Cars.destroy({
