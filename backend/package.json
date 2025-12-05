@@ -3,18 +3,19 @@
   "version": "1.0.0",
   "main": "src/index.js",
   "type": "module",
+  "description": "",
+  "author": "",
+  "license": "ISC",
   "scripts": {
     "dev": "nodemon .",
     "swagger": "node src/swagger/swagger.js",
     "start": "node src/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "subpkg run build"
   },
   "keywords": [],
-  "axios": "^1.13.2",
-  "author": "",
-  "license": "ISC",
-  "description": "",
   "dependencies": {
+    "axios": "^1.13.2",
     "bcryptjs": "^3.0.3",
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
@@ -27,6 +28,11 @@
   "devDependencies": {
     "cross-env": "^10.1.0",
     "nodemon": "^3.1.10",
-    "swagger-autogen": "^2.23.7"
-  }
+    "swagger-autogen": "^2.23.7",
+    "subpackage": "^1.1.0"
+  },
+  "subPackages": [
+    "backend",
+    "frontend"
+  ]
 }
