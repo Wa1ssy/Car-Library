@@ -8,10 +8,10 @@ const getAll = async (req, res) => {
 }
 
 const getById = async (req, res) => {
-    if (!req.params.userName) {
-        return res.status(400).send({ error: "URL does not contain userName" });
+    if (!req.params.username) {
+        return res.status(400).send({ error: "URL does not contain username" });
     }
-    const user = await userService.getUser(req.params.userName);
+    const user = await userService.getUser(req.params.username);
     if (!user) {
         return res.status(404).send({ error: "User not found" });
     }
@@ -33,24 +33,31 @@ const create = async (req, res) => {
 }
 
 const updateById = async (req, res) => {
-    if (!req.params.userName) {
-        return res.status(400).send({ error: "URL does not contain userName" });
+    console.log("updateById called for:", req.params.username);
+    console.log("Body:", req.body);
+    if (!req.params.username) {
+        console.log("Missing username in URL");
+        return res.status(400).send({ error: "URL does not contain username" });
     }
     if (req.body.password) {
         req.body.password = await bcrypt.hash(req.body.password, 10);
     }
-    const updatedUser = await userService.updateUser(req.params.userName, req.body);
+    const updatedUser = await userService.updateUser(req.params.username, req.body);
+    console.log("Update result:", updatedUser);
     if (!updatedUser) {
+        console.log("User not found or not updated");
         return res.status(404).send({ error: "User not found" });
     }
     return res.json(updatedUser);
 }
 
 const deleteById = async (req, res) => {
-    if (!req.params.userName) {
-        return res.status(400).send({ error: "URL does not contain userName" });
+    console.log("deleteById called for:", req.params.username);
+    if (!req.params.username) {
+        return res.status(400).send({ error: "URL does not contain username" });
     }
-    const userDeleted = await userService.deleteUser(req.params.userName);
+    const userDeleted = await userService.deleteUser(req.params.username);
+    console.log("Delete result:", userDeleted);
     if (!userDeleted) {
         return res.status(404).send({ error: "User not found" });
     }

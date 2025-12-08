@@ -111,8 +111,8 @@ export default function AddCar({ onCarAdded, initialCar, token }) {
                         onChange={(e) => setReleaseDate(e.target.value)}
                     />
                 </div>
-                <div style={{ display: 'flex', gap: '10px', marginTop: '1.5rem' }}>
-                    <button type="submit" className="btn" style={{ flex: 1 }}>
+                <div>
+                    <button type="submit" className="btn" style={{ width: '30%' }}>
                         {initialCar ? 'Update Car' : 'Add Car'}
                     </button>
                     {initialCar && (
@@ -120,7 +120,6 @@ export default function AddCar({ onCarAdded, initialCar, token }) {
                             type="button"
                             className="btn"
                             onClick={() => onCarAdded()}
-                            style={{ flex: 1, background: '#ccc', color: '#333' }}
                         >
                             Cancel
                         </button>

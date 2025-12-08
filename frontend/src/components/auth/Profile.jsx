@@ -51,72 +51,50 @@ export default function Profile({ token, username, onLogout }) {
     };
 
     return (
-        <div className="form-card" style={{ maxWidth: '600px', marginTop: '4rem' }}>
-            <h2 style={{ textAlign: 'center', color: '#5a3f9e', marginBottom: '2rem' }}>User Profile</h2>
+        <div className="auth-container">
+            <h2>Profile</h2>
+            {message && <div style={{ color: 'green', marginBottom: '1rem' }}>{message}</div>}
+            {error && <div style={{ color: 'red', marginBottom: '1rem' }}>{error}</div>}
 
-            <div style={{ marginBottom: '2rem', textAlign: 'center' }}>
-                <div style={{
-                    width: '100px',
-                    height: '100px',
-                    background: '#e0e0e0',
-                    borderRadius: '50%',
-                    margin: '0 auto 1rem',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    fontSize: '3rem'
-                }}>
-                    👤
+            <form onSubmit={handlePasswordChange}>
+                <div className="form-group">
+                    <label>New Password</label>
+                    <input
+                        type="password"
+                        placeholder="New Password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                    />
                 </div>
-                <h3>{username}</h3>
-            </div>
-
-            <div style={{ marginBottom: '2rem' }}>
-                <h4 style={{ marginBottom: '1rem', color: '#555' }}>Change Password</h4>
-                {message && <p style={{ color: 'green', marginBottom: '1rem' }}>{message}</p>}
-                {error && <p style={{ color: 'red', marginBottom: '1rem' }}>{error}</p>}
-
-                <form onSubmit={handlePasswordChange}>
-                    <div className="form-group">
-                        <label>New Password</label>
-                        <input
-                            type="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            required
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label>Confirm New Password</label>
-                        <input
-                            type="password"
-                            value={confirmPassword}
-                            onChange={(e) => setConfirmPassword(e.target.value)}
-                            required
-                        />
-                    </div>
-                    <button type="submit" className="btn" style={{ width: '100%' }}>Update Password</button>
-                </form>
-            </div>
-
-            <div style={{ borderTop: '1px solid #eee', paddingTop: '2rem' }}>
-                <h4 style={{ marginBottom: '1rem', color: '#555' }}>Danger Zone</h4>
-                <div style={{ display: 'flex', gap: '1rem', flexDirection: 'column' }}>
-                    <button
-                        onClick={onLogout}
-                        className="btn"
-                        style={{ background: '#666' }}
-                    >
-                        Logout
-                    </button>
-                    <button
-                        onClick={handleDeleteAccount}
-                        className="btn"
-                        style={{ background: '#ff4757' }}
-                    >
-                        Delete Account
-                    </button>
+                <div className="form-group">
+                    <label>Confirm Password</label>
+                    <input
+                        type="password"
+                        placeholder="Confirm New Password"
+                        value={confirmPassword}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
+                        required
+                    />
                 </div>
+                <button type="submit">Update Password</button>
+            </form>
+
+            <div style={{ display: 'flex', gap: '1rem', marginTop: '1rem', justifyContent: 'center' }}>
+                <button
+                    onClick={onLogout}
+                    style={{ background: '#666', width: '20%', padding: '10px 20px' }}
+                    type="button"
+                >
+                    Logout
+                </button>
+                <button
+                    onClick={handleDeleteAccount}
+                    style={{ background: '#ff4757', width: '20%', padding: '10px 20px' }}
+                    type="button"
+                >
+                    Delete Account
+                </button>
             </div>
         </div>
     );
