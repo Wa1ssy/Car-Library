@@ -7,11 +7,12 @@ const Register = () => {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const navigate = useNavigate();
+    const URL = import.meta.env.VITE_BACKEND_URL;
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('http://localhost:8000/api/v1/users', {
+            await axios.post(`${URL}/api/v1/users`, {
                 userName: username,
                 password: password
             });
