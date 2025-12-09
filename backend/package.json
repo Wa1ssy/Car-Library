@@ -10,7 +10,6 @@
     "dev": "nodemon .",
     "swagger": "node src/swagger/swagger.js",
     "start": "node src/index.js",
-    "test": "echo \" do nothing\"",
     "build": "echo \" do nothing\""
   },
   "keywords": [],
