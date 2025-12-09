@@ -10,7 +10,7 @@
     "dev": "nodemon .",
     "swagger": "node src/swagger/swagger.js",
     "start": "node src/index.js",
-    "test": "echo \"Error: no test specified\"",
+    "test": "echo \" do nothing\"",
     "build": "echo \" do nothing\""
   },
   "keywords": [],
