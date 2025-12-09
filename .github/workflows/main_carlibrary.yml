@@ -11,7 +11,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     permissions:
       contents: read #This is required for actions/checkout
 
@@ -21,14 +21,14 @@ jobs:
       - name: Set up Node.js version
         uses: actions/setup-node@v3
         with:
-          node-version: '24.x'
+          node-version: '20.x'
 
       - name: npm install, build, and test
         run: |
           npm install
           npm run build --if-present
           npm run test --if-present
-
+      
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
@@ -51,13 +51,13 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_F96F93DF020248E2AF14DC657420FF55 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_BDD9A4BC17D84C9A9185293B9D9248B1 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_0F997817AA444C20A8B0920C49A6BD4A }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_3E4E5A6B56394279BCB82CE030021C2D }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_8838901EF11A48E184DAB58E6E11494E }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_BEDECB184ADA414BBCAE4D681BE5831F }}
 
       - name: 'Deploy to Azure Web App'
-        id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
+        id: deploy-to-webapp
         with:
           app-name: 'CarLibrary'
           slot-name: 'Production'
