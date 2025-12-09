@@ -10,7 +10,8 @@
     "dev": "nodemon .",
     "swagger": "node src/swagger/swagger.js",
     "start": "node src/index.js",
-    "build": "echo \" do nothing\""
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "subpkg run build"
   },
   "keywords": [],
   "dependencies": {

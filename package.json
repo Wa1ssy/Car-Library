@@ -9,6 +9,7 @@
   ],
   "scripts": {
     "dev": "concurrently \"cd backend && npm run dev\" \"cd frontend && npm run dev",
+    "test": "echo \"Error: no test specified\" && exit 1",
     "postinstall": "subpkg install",
     "start": "concurrently \"cd backend && npm run start\" \"cd frontend && npm run preview\"",
     "build": "subpkg run build"

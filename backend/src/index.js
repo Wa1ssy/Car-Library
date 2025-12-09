@@ -22,11 +22,6 @@ app.get('/', async (req, res) => {
 gameRoutes(app);
 userRoutes(app);
 
-
-app.get("*", (req, res) => {
-    res.sendFile(path.join(publicPath, "index.html"));
-});
-
 const PORT = process.env.PORT || 8000;
 const HOST = process.env.HOST || 'localhost';
 
