@@ -10,6 +10,7 @@
   "scripts": {
     "dev": "concurrently \"cd backend && npm run dev\" \"cd frontend && npm run dev",
     "postinstall": "subpkg install",
+    "start": "concurrently \"cd backend && npm run start\" \"cd frontend && npm run preview\"",
     "build": "subpkg run build"
   },
   "repository": {
