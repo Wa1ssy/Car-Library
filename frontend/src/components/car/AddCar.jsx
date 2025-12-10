@@ -82,7 +82,7 @@ export default function AddCar({ onCarAdded, initialCar, token }) {
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         required
-                        placeholder="e.g. Tesla Model S"
+                        placeholder="BMW"
                     />
                 </div>
                 <div className="form-group">
@@ -91,7 +91,7 @@ export default function AddCar({ onCarAdded, initialCar, token }) {
                         type="text"
                         value={model}
                         onChange={(e) => setModel(e.target.value)}
-                        placeholder="e.g. Plaid"
+                        placeholder="e46"
                     />
                 </div>
                 <div className="form-group">
@@ -100,7 +100,7 @@ export default function AddCar({ onCarAdded, initialCar, token }) {
                         type="number"
                         value={price}
                         onChange={(e) => setPrice(e.target.value)}
-                        placeholder="e.g. 99000"
+                        placeholder="3700"
                     />
                 </div>
                 <div className="form-group">
